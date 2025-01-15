@@ -1,0 +1,399 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>WM Stock Login</title>
+  </head>
+  <style type="text/css" media="all">
+  
+    :root{
+    --destaque-contraste: #ff7a00 ;
+    --destaque: #6a3156;
+    --destaque-escuro: #241023 ;
+    
+    --branco: #FFFFFF;
+    --cinza: #E9EAEB;
+    
+    --dark: #15161B;
+    --dark-soft: #282F37;
+    --dark-logo: #1C1C1C;
+    }
+    
+    html{
+      overflow: hidden;
+    }
+    
+    body{
+      margin: 0;
+      padding: 0;
+      width: auto;
+      height: 100vh;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+    }
+    
+    body.fade-out {
+      opacity: 0;
+    }
+    
+    p{
+      margin: 0;
+      padding: 0;
+    }
+    
+    .buttonClass{
+      border: none;
+      background: none;
+      border-radius: 5px;
+      transition: background-color 0.5s ease;
+    }
+    
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    span {
+      text-align: left;
+      display: block;  /* Faz com que o <span> ocupe toda a linha */
+      width: 100%;     /* Garante que o <span> ocupe 100% da largura disponível */
+      margin-left: 5px;  /* Remove qualquer margem à esquerda, caso haja */
+    }
+    
+    input:focus{
+      outline: none;
+    }
+    
+    input::placeholder{
+      color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* DISPLAY FLEX CENTER */
+    body, img, #boxMain, #boxCentral, #boxDadosPessoais, .conteinerDadosPessoais, #boxDados, 
+    .conteinerDados, a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial;
+    }
+    
+    #boxMain {
+      width: 100%;
+      height: 100%;
+      position: relative; /* Necessário para posicionar o pseudo-elemento */
+      overflow: hidden; /* Garante que o fundo borrado não ultrapasse os limites da div */
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.3s ease-out;
+    }
+    
+    #boxMain::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /*background-image: url('https://assets.onecompiler.app/42wu6ajnx/432umnr2y/WhatsApp%20Image%202024-12-13%20at%2009.30.42.jpeg');*/
+      background-image: url('https://assets.onecompiler.app/42wu6ajnx/433vymj5u/WhatsApp%20Image%202024-12-26%20at%2010.58.25.jpeg');
+      background-size: cover;     
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: brightness(0.5) grayscale(0.2);
+      z-index: -1;
+    }
+    
+    #boxCentral{
+      flex-direction: column;
+      text-align: center;
+      width: auto;
+      max-width: 500px;
+      height: auto;
+      border-radius: 10px;
+      padding: 5% 0;
+      box-sizing: border-box;
+      color: var(--cinza);
+    }
+    
+    #boxCentral h1{
+      font-size: 15pt;
+    }
+
+    #boxCentral .buttonClass{
+      width: 50%;
+      font-size: 10pt;
+      background-color: var(--destaque);
+      color: var(--branco);
+      height: 40px;
+      margin: 5px;
+    }
+    
+    #boxCentral .buttonClass:hover{
+      background-color: var(--destaque-contraste);
+    }
+    
+    #boxCentral #boxDadosPessoais{
+      align-items: stretch;
+      flex-direction: column;
+      width: 90%;
+      gap: 10px;
+    }
+    
+    #boxCentral #boxDados{
+      width: 100%;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    
+    #boxCentral #boxDados .conteinerDados{
+      border: none;
+      height: 50px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      background-color: var(--branco);
+      color: var(--destaque-contraste);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+    
+    #boxCentral #boxDados .conteinerDados input{
+      background-color: var(--branco);
+      color: var(--destaque-contraste);
+      font-size: 11pt;
+      border: none;
+      width: 100%;
+      height: 40px;
+    }
+    
+    #boxCentral #boxDados .conteinerDados input:focus{
+      outline: none;
+    }
+    
+    #boxCentral #boxDados .conteinerDados img{
+      width: 9%;
+      max-width: 80px;
+      height: auto;
+      margin: 0 10px;
+    }
+    
+    #boxCentral #boxDados .conteinerDados #hiddenPassword {
+      margin-left: auto;
+    }
+    
+    #verificacao {
+      width: 90%;
+      flex-direction: column;
+      overflow: hidden;
+      font-size: 11pt;
+      text-align: right;
+      padding: 5%;
+    }
+    
+    .ok{
+      font-size: 10pt;
+      color: var(--dark-logo);
+      font-style: italic;
+      text-decoration: line-through;
+    }
+    
+    .erro{
+      font-size: 12pt;
+      color: var(--destaque-contraste);
+      font-weight: bold;
+    }
+
+  </style>
+   <body>
+    <div id="boxMain">
+      <div id="boxCentral">
+        <h1>DADOS PESSOAS</h1>
+        
+        <div id="boxDadosPessoais">
+          
+          <!-- DADOS USUARIO E SENHA -->
+          <div id="boxDados">
+            
+            <span>Usuario</span>
+            <span id="usuarioErro" style="display: none">Usuario já existente</span>
+            <div id="boxUsuario" class="conteinerDados">
+              <img src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/account_b.png" alt="" />
+              <input id="txtUsuario" type="text" placeholder="Informe um usuario" autocomplete="off" />
+            </div>
+            
+            <span>Senha</span>
+            
+            <div id="boxSenha1" class="conteinerDados">
+              <img src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/lock_b.png" alt="" />
+              <input id="txtSenha1" type="password" placeholder="Informe uma senha" />
+              <img id="hiddenPassword1" src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png" onclick="trocarImagem(1)" />
+            </div>
+            
+            <p id="verComprimento1" style="display: none">As senhas não se coincidem</p>
+            <div id="boxSenha2" class="conteinerDados">
+              <img src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/lock_b.png" alt="" />
+              <input id="txtSenha2" type="password" placeholder="Digite a senha novamente" />
+              <img id="hiddenPassword2" src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png" onclick="trocarImagem(2)" />
+            </div>
+          </div>
+          
+          <div id="verificacao">
+            <p id="verNum">Pelo menos 1 número é necessário</p>
+            <p id="verMaius">Adicione uma letra maiúscula </p>
+            <p id="verMinus">Inclua uma letra minúscula</p>
+            <p id="verCaract">Um caractere especial é necessário</p>
+            <p id="verComprimento">A senha precisa ter pelo menos 8 caracteres</p>
+          </div>
+          
+          <h1> </h1>
+          
+          <div id="boxBtn" class="conteinerDadosPessoais">
+            <a class="buttonClass" href="pageCadastro.html">VOLTAR</a>
+            <a class="buttonClass" href="#">FINALIZAR</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+      // FUNÇÃO PARA ESCONDER E MOSTRAR A SENHA + TROCAR IMAGEM
+      function trocarImagem(num) {
+        var imagem = document.getElementById('hiddenPassword' + num); // Seleciona a imagem pelo ID
+        var senhaInput = document.getElementById('txtSenha' + num);
+    
+        // Verifica qual imagem está sendo exibida e alterna entre elas
+        if (imagem.src.includes('https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png')) {
+            imagem.src = 'https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOn_b.png';  // Troca para imagem2.jpg
+            senhaInput.type = 'text';
+        } else {
+            imagem.src = 'https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png';  // Troca de volta para imagem1.jpg
+            senhaInput.type = 'password';
+        }
+      }
+      
+      // FUNÇÃO DE VERIFICAÇÃO
+      function verificarInput(){
+        const input = document.getElementById('txtSenha1').value;
+        
+        let inputNum = /[0-9]/.test(input);
+        let inputMaius = /[A-Z]/.test(input);
+        let inputMinus = /[a-z]/.test(input);
+        let inputCaract = /[^a-zA-Z0-9\s]/.test(input);
+        let inputComprimento = input.length >= 8;
+        
+        const verNum = document.getElementById('verNum');
+        const verMaius = document.getElementById('verMaius');
+        const verMinus = document.getElementById('verMinus');
+        const verCaract = document.getElementById('verCaract');
+        const verComprimento = document.getElementById('verComprimento');
+        
+        if (inputNum){
+          verNum.className = 'ok';
+        } else {
+          verNum.className = 'erro';
+        }
+        
+        if (inputMaius){
+          verMaius.className = 'ok';
+        } else {
+          verMaius.className = 'erro';
+        }
+        
+        if (inputMinus){
+          verMinus.className = 'ok';
+        } else {
+          verMinus.className = 'erro';
+        }
+        
+        if (inputCaract){
+          verCaract.className = 'ok';
+        } else {
+          verCaract.className = 'erro';
+        }
+        
+        if (inputComprimento){
+          verComprimento.className = 'ok';
+        } else {
+          verComprimento.className = 'erro';
+        }
+        
+      }
+      
+      // FUNÇÃO PARA VERIFICAR SE AS SENHAS SE COINCIDEM
+      function verSenha() {
+        const inputSenha1 = document.getElementById('txtSenha1').value;
+        const inputSenha2 = document.getElementById('txtSenha2').value;
+        const verComprimento1 = document.getElementById('verComprimento1');
+        
+        if (inputSenha1 === inputSenha2) {
+          verComprimento1.style.display = 'none'
+        } else {
+          verComprimento1.className = 'erro';
+          verComprimento1.style.display = 'block'
+        }
+      }
+      
+      // FUNÇÃO PARA VERIFICAR USUARIO
+      function verificarUsuario() {
+        const inputUsuario1 = document.getElementById('txtUsuario').value;
+        const inputUsuario2 = 'powalter';
+        const usuarioErro = document.getElementById('usuarioErro');
+        
+        if (inputUsuario1 === inputUsuario2) {
+          usuarioErro.className = 'erro';
+          usuarioErro.style.display = 'block'
+        } else {
+          usuarioErro.style.display = 'none'
+        }
+      }
+      
+      // Adiciona o efeito de fade ao clicar no link
+      const links = document.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault(); // Previne o comportamento padrão de navegação
+      
+          document.body.classList.add('fade-out'); // Adiciona o fade-out ao corpo
+      
+          // Aguarda o tempo da animação antes de redirecionar
+          setTimeout(() => {
+            window.location.href = link.href; // Redireciona para o link
+          }, 500); // O tempo de transição (em milissegundos)
+        });
+      });
+      
+      document.addEventListener("DOMContentLoaded", function() {
+      // Adiciona o efeito de fade-in na página
+          document.body.classList.add('fade-in');
+      });
+      
+      // Adiciona a classe de fade-out no carregamento da página de volta
+      if (document.body.classList.contains('fade-out')) {
+          document.body.classList.remove('fade-out');
+          document.body.classList.add('fade-in');
+      }
+      
+      // Adicione esse evento para que a função de verificação seja chamada toda vez que o usuário digitar algo na senha
+      document.getElementById('txtSenha1').addEventListener('input', verificarInput);
+      document.getElementById('txtSenha2').addEventListener('input', verSenha);
+      document.getElementById('txtUsuario').addEventListener('input', verificarUsuario);
+    </script>
+  </body>
+</html>

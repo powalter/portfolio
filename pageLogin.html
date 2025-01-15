@@ -1,0 +1,421 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>WM Stock Login</title>
+  </head>
+  <style type="text/css" media="all">
+  
+    :root{
+    --destaque-contraste: #ff7a00 ;
+    --destaque: #6a3156;
+    --destaque-escuro: #241023 ;
+    
+    --branco: #FFFFFF;
+    --cinza: #E9EAEB;
+    
+    --dark: #15161B;
+    --dark-soft: #282F37;
+    --dark-logo: #1C1C1C;
+    }
+    
+    html{
+      overflow: hidden;
+    }
+    
+    body{
+      margin: 0;
+      padding: 0;
+      width: auto;
+      height: 100vh;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+    }
+    
+    body.fade-out {
+      opacity: 0;
+    }
+    
+    p{
+      margin: 0;
+      padding: 0;
+    }
+    
+    button{
+      border: none;
+      background: none;
+      border-radius: 5px;
+    }
+    
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* DISPLAY FLEX CENTER */
+    body, img, #boxMain, #boxCentral, #boxLogo, #boxDados, .conteinerDados, #boxSenha, 
+    #boxRemember, #boxBtn, .contentBoxBtn, #btnSocial, .contentBtnSocial, #boxCadastro, #senhaErro, .buttonClass {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial;
+    }
+    
+    #boxMain {
+      width: 100%;
+      height: 100%;
+      position: relative; /* Necessário para posicionar o pseudo-elemento */
+      overflow: hidden; /* Garante que o fundo borrado não ultrapasse os limites da div */
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.3s ease-out;
+    }
+    
+    #boxMain::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /*background-image: url('https://assets.onecompiler.app/42wu6ajnx/432umnr2y/WhatsApp%20Image%202024-12-13%20at%2009.30.42.jpeg');*/
+      background-image: url('https://assets.onecompiler.app/42wu6ajnx/433vymj5u/WhatsApp%20Image%202024-12-26%20at%2010.58.25.jpeg');
+      background-size: cover;     
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      filter: blur(1px);
+      z-index: -1;
+    }
+    
+    #boxCentral{
+      flex-direction: column;
+      width: 320px;
+      height: auto;
+      border-radius: 10px;
+      padding: 5% 0;
+    }
+    
+    #boxCentral #boxLogo img{
+      width: 65%;
+      height: auto;
+      object-fit: contain;
+      padding: 3px;
+      background-color: var(--dark-logo);
+      border-radius: 10px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* ---------------------- */
+    
+    /* ESTILO DADOS */
+    
+    /* ---------------------- */
+    
+    #boxCentral #boxDados{
+      width: 90%;
+      flex-direction: column;
+      margin: 10% 0;
+      gap: 20px;
+      overflow: hidden;
+      padding: 5%;
+      margin-bottom: 0;
+    }
+    
+    #boxCentral #boxDados .conteinerDados{
+      justify-content: start;
+      border: none;
+      height: 50px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      background-color: var(--branco);
+      color: var(--branco);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+    
+    #boxCentral #boxDados .conteinerDados input{
+      background-color: var(--branco);
+      color: var(--destaque-contraste);
+      font-size: 11pt;
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+    
+    #boxCentral #boxDados .conteinerDados input:focus{
+      outline: none;
+    }
+    
+    #boxCentral #boxDados .conteinerDados img{
+      width: 11%;
+      height: auto;
+      margin: 0 10px;
+    }
+    
+    #boxCentral #boxDados .conteinerDados #hiddenPassword {
+      margin-left: auto;
+    }
+    
+    #boxCentral #boxRemember{
+      justify-content: end;
+      font-size: 10pt;
+      color: var(--branco);
+      width: 90%;
+      height: auto;
+      gap: 5px;
+    }
+    
+    /* Estilo para o checkbox */
+    #boxCentral #boxRemember input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      background-color: var(--dark-soft); /* Cor de fundo */
+      transition: background-color 0.3s, border-color 0.3s;
+      appearance: none; /* Remove o estilo padrão */
+      border-radius: 3px;
+    }
+    
+    /* Estilo quando o checkbox está marcado */
+    #boxCentral #boxRemember input[type="checkbox"]:checked {
+      background-color: var(--destaque); /* Cor de fundo quando marcado */
+      border-color: #4CAF50; /* Cor da borda quando marcado */
+      box-shadow: 0 0 0 5px rgba(211, 47, 47, 0.2); /* Sombra de foco quando marcado */
+    }
+    
+    #boxCentral #boxDados #senhaErro{
+      display: none;
+      width: 100%;
+      color: var(--branco);
+      text-align: center;
+    }
+    
+    /* ---------------------- */
+    
+    /* ESTILO BOTÕES */
+    
+    /* ---------------------- */
+    
+    #boxCentral #boxBtn{
+      margin-top: 20px;
+      padding-bottom: 20px;
+      width: 90%;
+      height: 50px;
+      border-bottom: 2px solid var(--dark-soft);
+    }
+    
+    #boxCentral #boxBtn .contentBoxBtn{
+      width: 50%;
+      height: 80%;
+    }
+    
+    #boxCentral #boxBtn #btnEnter{
+      border-right: 1px solid var(--dark-soft);
+    }
+    
+    #boxCentral #boxBtn #btnEnter button {
+      font-size: 12pt;
+      height: 100%;
+      width: 80%;
+      border: none;
+      background-color: var(--destaque);
+      color: var(--branco);
+      transition: background-color 0.3s ease;
+    }
+    
+    #boxCentral #boxBtn #btnEnter button:hover{
+      background-color: var(--destaque-contraste);
+    }
+    
+    #boxCentral #boxBtn #btnEnter button:active{
+      background-color: var(--dark);
+    }
+    
+    #boxCentral #boxBtn #btnSocial{
+      border-left: 1px solid var(--dark-soft);
+      gap: 10px;
+    }
+    
+    #boxCentral #boxBtn #btnSocial .contentBtnSocial{
+      border-radius: 100%;
+      height: 35px;
+      width: 35px;
+    }
+    
+    #boxCentral #boxBtn #btnSocial .contentBtnSocial img{
+      object-fit: cover;
+      width: 95%;
+    }
+    
+    #boxCentral #boxBtn #btnSocial #btnGoogle{
+      background-color: var(--branco);
+    }
+    
+    #boxCentral #boxBtn #btnSocial #btnFace{
+      background-color: #1877f2;
+    }
+    
+    #boxCentral #boxCadastro{
+      font-size: 10pt;
+      color: var(--branco);
+      width: 90%;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+    
+    #boxCentral #boxCadastro .buttonClass{
+      font-size: 12pt;
+      margin: 10px 0;
+      background-color: var(--destaque);
+      color: var(--branco);
+      height: 40px;
+      width: 90%;
+      transition: background-color 0.3s ease;
+    }
+    
+    #boxCentral #boxCadastro .buttonClass:hover {
+      background-color: var(--destaque-contraste);
+    }
+    
+    #boxCentral #boxCadastro button:active {
+      background-color: var(--dark);
+    }
+    
+  </style>
+  <body>
+    <div id="boxMain">
+      <div id="boxCentral">
+      
+        <!-- SESSÃO DA LOGO -->
+        <div id="boxLogo">
+          <img src="https://assets.onecompiler.app/42wu6ajnx/435ygezzm/WM.png" alt="" />
+        </div>
+        <!-- DADOS USUARIO E SENHA -->
+        <div id="boxDados">
+          <p id="senhaErro">Usuario ou senha estão incorretos</p>
+          <div id="boxUsuario" class="conteinerDados">
+            <img src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/account_b.png" alt="" />
+            <input id="txtUsuario" type="text" placeholder="Usuario ou email" autocomplete="off" />
+          </div>
+          
+          <div id="boxSenha" class="conteinerDados">
+            <img src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/lock_b.png" alt="" />
+            <input id="txtSenha" type="password" placeholder="Senha" />
+            <img id="hiddenPassword" src="https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png" onclick="trocarImagem()" />
+          </div>
+        </div>
+        
+        <div id="boxRemember">
+          <p>Lembrar sua senha?</p>
+          <input type="checkbox" name="" id="rememberMe" />
+        </div>
+        
+        <div id="boxBtn">
+          
+          <div id="btnEnter" class="contentBoxBtn">
+            <button type="submit" onclick="verificarSenha()">ENTRAR</button>
+          </div>
+          
+          <div id="btnSocial" class="contentBoxBtn">
+            
+            <div id="btnGoogle" class="contentBtnSocial">
+              <a href="https://www.google.com/webhp?hl=pt-BR&ictx=2&sa=X&ved=0ahUKEwiHn4Tqwq-KAxX2NrkGHerSPBAQPQgI">
+                <button type="submit">
+                  <img src="https://assets.onecompiler.app/42wu6ajnx/432umnr2y/google-symbol.png" alt="" />
+                </button>
+              </a>
+            </div>
+            
+            <div id="btnFace" class="contentBtnSocial">
+              <a href="https://www.facebook.com/?locale=pt_BR">
+                <button type="submit">
+                  <img src="https://assets.onecompiler.app/42wu6ajnx/432umnr2y/facebook.png" alt="" />
+                </button>
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div id="boxCadastro">
+          <p>Não possui uma conta?</p>
+          <a class="buttonClass" href="pageCadastro.html">CADASTRE AQUI</a>
+          <a href="#">
+            <p>Esqueceu sua senha?</p>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </body>
+  <script>
+    function trocarImagem() {
+      var imagem = document.getElementById('hiddenPassword');  // Seleciona a imagem pelo ID
+      var senhaInput = document.getElementById('txtSenha');
+  
+      // Verifica qual imagem está sendo exibida e alterna entre elas
+      if (imagem.src.includes('https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png')) {
+          imagem.src = 'https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOn_b.png';  // Troca para imagem2.jpg
+          senhaInput.type = 'text'
+      } else {
+          imagem.src = 'https://assets.onecompiler.app/42wu6ajnx/4347c6rmy/eyeOff_b.png';  // Troca de volta para imagem1.jpg
+          senhaInput.type = 'password'
+      }
+    }
+  
+    function verificarSenha(){
+      var txtSenha = document.getElementById('txtSenha');
+      var txtUsuario = document.getElementById('txtUsuario');
+      var senhaErro = document.getElementById('senhaErro');
+      
+      if (txtSenha.value === txtUsuario.value){
+        senhaErro.style.display = "none";
+      } else {
+        senhaErro.style.display = "block";
+      }
+    }
+    
+    // Adiciona o efeito de fade ao clicar no link
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault(); // Previne o comportamento padrão de navegação
+    
+        document.body.classList.add('fade-out'); // Adiciona o fade-out ao corpo
+    
+        // Aguarda o tempo da animação antes de redirecionar
+        setTimeout(() => {
+          window.location.href = link.href; // Redireciona para o link
+        }, 500); // O tempo de transição (em milissegundos)
+      });
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+    // Adiciona o efeito de fade-in na página
+        document.body.classList.add('fade-in');
+    });
+    
+    // Adiciona a classe de fade-out no carregamento da página de volta
+    if (document.body.classList.contains('fade-out')) {
+        document.body.classList.remove('fade-out');
+        document.body.classList.add('fade-in');
+    }
+  
+  </script>
+</html>

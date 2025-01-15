@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Seja Bem Vindo(a) ao meu portfolio</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <style type="text/css" media="all">
+      
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+      
+      :root{
+      --destaque-contraste: #ff7a00 ;
+      --destaque: #6a3156;
+      --destaque-escuro: #241023 ;
+      
+      --branco: #FFFFFF;
+      --cinza: #E9EAEB;
+      
+      --dark: #15161B;
+      --dark-soft: #282F37;
+      --dark-logo: #1C1C1C;
+      }
+        
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box; /* Inclui o padding e borda no cálculo da largura e altura */
+      }  
+        
+      body, header, #logoPerfil, #capa, #boxPresentation, iframe, .boxConteudo, 
+      #boxSkill, .skillConteiner, .logoSkill, .titleSkill, #divisoriaIcon, .projetoDescricao, 
+      .iframeContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Montserrat", serif;
+      }
+        
+      body, html {
+        margin: 0;
+        padding: 0;
+        background-color: var(--branco);
+        text-align: center;
+      }
+      
+      body {
+        flex-direction: column; /* Organiza os elementos de forma vertical */
+        justify-content: flex-start; /* Alinha os itens no topo */
+      }
+      
+      header {
+        flex-direction: column;
+        width: 100%;
+        padding: 50px 0;
+        background-color: var(--branco);
+      }
+      
+      h1, h2, h3, h4, h5{
+        font-weight: normal;
+      }
+      
+      header h1{
+        font-size: 3em;
+        color: var(--destaque);
+        padding: 20px 0;
+        margin: 0;
+      }
+      
+      header h2{
+        font-size: 1.5em;
+        color: var(--destaque);
+        padding: 0;
+        margin: 0;
+      }
+      
+      #logoPerfil{
+        margin-bottom: 50px;
+        width: 350px;
+        border-radius: 100%;
+        overflow: hidden;
+        box-shadow: 5px 5px 15px rgba(106, 49, 86, 0.5);
+      }
+      
+      #logoPerfil img{
+        width: 100%;
+        height: auto;
+      }
+
+      #capa {
+        width: 80%;
+        overflow: hidden;
+      }
+      
+      #capa img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* A imagem se ajusta completamente, mantendo a proporção */
+      }
+      
+      #boxPresentation{
+        background-color: var(--destaque-contraste);
+        width: 100%;
+        height: auto;
+        color: var(--branco);
+        padding-top: 80px;
+        padding-bottom: 250px;
+        flex-direction: column;
+      }
+      
+      #boxPresentation h1{
+        font-size: 32px;
+        width: 70%;
+      }
+      
+      #boxPresentation span{
+        width: 60%;
+        font-size: 20px;
+      }
+      
+      #boxSkill{
+        background-color: var(--branco);
+        width: 80%;
+        height: 750px;
+        bottom: 150px;
+        position: relative;
+        border-radius: 50px;
+        font-size: 18px;
+        overflow: hidden;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      #boxSkill .skillConteiner {
+        padding-top: 50px;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      #boxSkill .skillConteiner h1, #boxSkill .skillConteiner h2, #boxSkill .skillConteiner p{
+        font-size: 18px;
+        font-weight: normal;
+      }
+      
+      #boxSkill .skillConteiner h1{
+        color: var(--destaque-contraste);
+        font-weight: bold;
+      }
+      
+      #boxSkill .skillConteiner .titleSkill{
+        flex-direction: column;
+        height: 200px;
+      }
+      
+      #boxSkill .skillConteiner .titleSkill h1{
+        font-size: 24px;
+        margin: 24px;
+        color: var(--dark-logo);
+        font-weight: bold;
+      }
+      
+      #boxSkill .skillConteiner .titleSkill h2{
+        width: 80%;
+        text-align: center;
+      }
+      
+      #boxSkill .skillConteiner .logoSkill {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        overflow: hidden;
+        background-color: var(--destaque);
+      }
+      
+      #boxSkill .skillConteiner .logoSkill img {
+        width: 60%;
+        height: 60%;
+        object-fit: contain;
+      }
+      
+      #boxSkill #divisoriaSkill{
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      #divisoriaIcon{
+        border: 8px solid var(--destaque);
+        width: 80px;
+        height: 80px;
+        position: relative;
+        top: 40px;
+        border-radius: 100%;
+        overflow: hidden;
+      }
+      
+      #divisoriaIcon img{
+        width: 100%;
+        height: 100%;
+      }
+      
+      #boxTitleProject{
+        width: 100%;
+        padding-bottom: 180px;
+        padding-top: 100px;
+        background-color: var(--destaque);
+        color: var(--branco);
+      }
+      
+      #boxTitleProject h1{
+        font-weight: bold;
+        color: var(--destaque-contraste);
+      }
+      
+      .boxProjeto{
+        padding-top: 20px;
+        border-radius: 50px;
+        background-color: var(--branco);
+        width: 90%;
+        bottom: 150px;
+        position: relative;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+      }
+      
+      .boxConteudo {
+        flex-wrap: wrap; /* Permite que os elementos filhos se movam para a linha seguinte */
+        justify-content: space-between; /* Alinha os itens com espaçamento entre eles */
+        gap: 20px;
+        width: 100%;
+        height: auto; /* Permite que a altura da boxConteudo se ajuste ao conteúdo */
+        padding: 20px; /* Ajuste o padding para dar espaçamento */
+        padding-bottom: 80px;
+      }
+      
+      .iframeContainer {
+        flex-direction: column;
+        flex: 1 1 300px; /* Flexível, mas com largura mínima de 300px */
+        min-width: 300px; /* A largura mínima será 300px */
+        height: 700px; /* Defina a altura que desejar para o iframe */
+      }
+      
+      .iframeContainer iframe{
+        border-radius: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        transition: box-shadow 0.5s ease;
+      }
+      
+      .iframeContainer .projetoDescricao{
+        height: 100px;
+      }
+      
+      
+      @media (max-width: 1080px) {
+        .iframeContainer {
+          width: 70%; /* Ajusta a largura para 90% da tela em telas menores */
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .iframeContainer {
+          width: 70%; /* Ajusta a largura para 90% da tela em telas menores */
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .iframeContainer {
+          width: 100%; /* Ajusta para 100% da tela em telas ainda menores */
+        }
+      }
+      
+      .iframeContainer iframe:hover{
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
+      }
+
+      iframe{
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      
+      
+      
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <h1>Desenvolvedor Front-End e Designer</h1>
+      <h2>Foco em simplicidade e uma boa experiência com criatividade e inovação </h2>
+    </header>
+    
+    <div id="logoPerfil">
+      <img src="https://assets.onecompiler.app/42wu6ajnx/433vymj5u/WhatsApp%20Image%202024-12-26%20at%2012.28.17.jpeg" alt="" />
+    </div>
+    
+    <div id="capa">
+      <img src="https://assets.onecompiler.app/42wu6ajnx/433vymj5u/capaOff.png" alt="" />
+    </div>
+    
+    <div id="boxPresentation">
+      <h1>Olá, me chamo Walter, prazer em te conhecer !</h1>
+      <span>
+        Sou uma pessoa criativa e curiosa, apaixonada por design, arte digital e tecnologia. Tenho um forte interesse por criar interfaces que combinam estética e funcionalidade, sempre buscando oferecer experiências que encantem o usuário. Gosto de trabalhar de forma detalhista, abordando problemas de maneira inovadora e focada em soluções eficientes, com um olhar voltado para o desenvolvimento front-end.
+      </span>
+    </div>
+    
+    <div id="boxSkill">
+      
+      <div class="skillConteiner">
+        <div class="logoSkill">
+          <img src="https://assets.onecompiler.app/42wu6ajnx/433vymj5u/skill1.png" alt="" />
+        </div>
+        <div class="titleSkill">
+          <h1>Designer</h1>
+          <h2>Valorizo uma estrutura de conteúdo simples, padrões de design limpos e interações bem pensadas.</h2>
+        </div>
+        <h1>Projetos que gosto de fazer</h1>
+        <h2>Web, Loogtipo, Desenhos</h2>
+        <h1>Ferramentas de Designer</h1>
+        <p>Sketckbook</p>
+        <p>Canvas</p>
+        <p>Illustrator</p>
+      </div>
+      
+      <div id="divisoriaSkill"></div>
+      
+      <div class="skillConteiner">
+        <div class="logoSkill">
+          <img src="https://assets.onecompiler.app/42wu6ajnx/433vymj5u/skill2.png" alt="" />
+        </div>
+        <div class="titleSkill">
+          <h1>Desenvolvedor Front-End</h1>
+          <h2>Gosto de programar coisas do zero e gosto de dar vida a ideias no navegador.</h2>
+        </div>
+        <h1>Linguagens </h1>
+        <h2>HTML, CSS, Javascript, Python</h2>
+        <h1>Ferramentas de Designer</h1>
+        <p>VS Code</p>
+        <p>Github</p>
+      </div>
+      
+    </div>
+    
+    <div id="divisoriaIcon">
+      <img src="https://assets.onecompiler.app/42wu6ajnx/433vymj5u/Design%20sem%20nome%20(1).png" alt="" />
+    </div>
+    
+    <div id="boxTitleProject">
+      <h1>Projetos Recentes</h1>
+      <h3>Aqui estão meus projetos mais recentes, tem alguma duvida? <a href="">Envie um e-mail.</a></h3>
+    </div>
+    
+    <div class="boxProjeto">
+      
+      <div class="boxDescricao">
+        <h1>Pagina de Login</h1>
+        <h3>Ferramentas e linguagem: HTML, CSS e JavaScript</h3>
+      </div>
+      
+      <div class="boxConteudo">
+        
+        <div class="iframeContainer">
+          <span class="projetoDescricao">Tela de login com interação e verificação de usuario</span>
+          <iframe src="pageLogin.html"></iframe>
+        </div>
+        
+        <div class="iframeContainer">
+          <span class="projetoDescricao">Tela de cadastro com formatação nos numeros e carregamento de endereço pelo CEP</span>
+          <iframe src="pageCadastro.html"></iframe>
+        </div>
+        
+        <div class="iframeContainer">
+          <span class="projetoDescricao">Tela de cadastro de senha com verificação de daddos</span>
+          <iframe src="pageCadastroSenha.html"></iframe>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <span>
+      Pagina de Login com cadastro de usuario.
+    </span>
+    
+  </body>
+</html>
